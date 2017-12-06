@@ -18,41 +18,28 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/burgers", function(req, res) {
-    db.burger.findAll({}).then(function(dbBurger) {
-      res.json(dbBurger);
-    });
-  });
-
-  app.get("/api/burgers/:id", function(req, res) {
-    db.burger.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbBurger) {
-      res.json(dbBurger);
-    });
-  });
-
   app.post("/api/burgers", function(req, res) {
     db.burger.create(req.body).then(function(dbBurger) {
       res.json(dbBurger);
     });
   });
 
-  app.delete("/api/burgers/:id", function(req, res) {
-    db.burger.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(function(dbBurger) {
-      res.json(dbBurger);
-    });
+  app.put("/api/burgers/:id", function(req, res) {
+    db.burger.update(
+      req.body,
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function(dbBurger) {
+        res.json(dbBurger);
+      });
   });
 
 };
 
 
+/*
 //select
 router.get("/", function(req, res) {
   burger.selectAll(function(data) {
