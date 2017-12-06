@@ -7,18 +7,19 @@ var sequelize = require("../config/config.json");
 var burger = sequelize.define("burger", {
   id: {
       type: Sequelize.INTEGER,
-      autoIncrement: true
+      autoIncrement: true,
+      primaryKey: true
     },
   burger_name: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       len: [1, 300]
     },
   devoured: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },{
+      type: Sequelize.BOOLEAN,
+      defaultValue: false,
+    }
+},{
   nowDate: Sequelize.DATE
-  }
 });
 
 
