@@ -1,3 +1,35 @@
+//
+var Sequelize = require("sequelize");
+var sequelize = require("../config/config.json");
+
+//
+
+var burger = sequelize.define("burger", {
+  id: {
+      type: Sequelize.INTEGER,
+      autoIncrement: true
+    },
+  burger_name: {
+      type: DataTypes.STRING,
+      len: [1, 300]
+    },
+  devoured: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },{
+  nowDate: Sequelize.DATE
+  }
+});
+
+
+//
+burger.sync();
+
+// Makes the Book Model available for other files (will also create a table)
+module.exports = burger;
+
+
+/*
 //===== IMPORT =====//
 
 //orm
@@ -27,3 +59,4 @@ var burger = {
 //===== EXPORT =====//
 
 module.exports = burger;
+*/

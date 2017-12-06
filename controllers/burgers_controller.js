@@ -3,10 +3,55 @@
 var express = require("express");
 var router = express.Router();
 
+
 //model
-var burger = require("../models/burger.js");
+var db = require("../models");
+//var burger = require("../models/burger.js");
 
 //===== ROUTES =====//
+
+module.exports = function(app) {
+  
+  app.get("/", function(req, res) {
+    db.burger.findAll({}).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
+  });
+
+  app.get("/api/burgers", function(req, res) {
+    db.burger.findAll({}).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
+  });
+
+  app.get("/api/burgers/:id", function(req, res) {
+    db.burger.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
+  });
+
+  app.post("/api/burgers", function(req, res) {
+    db.burger.create(req.body).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
+  });
+
+  app.delete("/api/burgers/:id", function(req, res) {
+    db.burger.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbBurger) {
+      res.json(dbBurger);
+    });
+  });
+
+};
+
 
 //select
 router.get("/", function(req, res) {
@@ -50,3 +95,4 @@ router.put("/api/burgers/:id", function(req, res) {
 //===== EXPORT =====//
 
 module.exports = router;
+*/
