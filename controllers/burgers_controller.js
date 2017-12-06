@@ -25,15 +25,17 @@ module.exports = function(app) {
   });
 
   app.put("/api/burgers/:id", function(req, res) {
-    db.burger.update(
-      req.body,
-      {
-        where: {
-          id: req.body.id
-        }
-      }).then(function(dbBurger) {
-        res.json(dbBurger);
-      });
+    if (req.params.id){
+        db.burger.update(
+        req.body,
+        {
+          where: {
+            id: req.body.id
+          }
+        }).then(function(dbBurger) {
+          res.json(dbBurger);
+        });
+    };
   });
 
 };
